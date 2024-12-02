@@ -1,3 +1,29 @@
+const navlinks = document.querySelectorAll("header nav a");
+const sections = document.querySelectorAll("section");
+
+const activePage = () => {
+  navlinks.forEach((link) => {
+    link.classList.remove("active");
+  });
+
+  sections.forEach((section) => {
+    section.classList.remove("active");
+  });
+};
+
+navlinks.forEach((link, idx) => {
+  link.addEventListener("click", () => {
+    if (!link.classList.contains("active")) {
+      activePage();
+      link.classList.add("active");
+    }
+  });
+
+  link.addEventListener("click", () => {
+    sections[idx].classList.add("active");
+  });
+});
+
 const resumeBtns = document.querySelectorAll(".resume-btn");
 const resumeDtls = document.querySelectorAll(".resume-details");
 
@@ -32,13 +58,12 @@ const activePortfolio = () => {
     index * 2
   }rem))`;
 
+  portfolioDetails.forEach((detail) => {
+    detail.classList.remove("active");
+  });
 
-portfolioDetails.forEach((detail) => {
-  detail.classList.remove("active");
-});
-
-portfolioDetails[index].classList.add("active");
-}
+  portfolioDetails[index].classList.add("active");
+};
 
 arrowRight.addEventListener("click", () => {
   if (index < 4) {
