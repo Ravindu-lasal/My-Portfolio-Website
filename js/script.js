@@ -88,3 +88,20 @@ arrowLeft.addEventListener("click", () => {
 
   activePortfolio();
 });
+
+// Menu icon functionality
+const menuIcon = document.querySelector("#menu-icon");
+const nav = document.querySelector("nav");
+
+menuIcon.addEventListener("click", () => {
+  nav.classList.toggle("active");
+  menuIcon.classList.toggle("bx-x");
+});
+
+// Hide mobile menu when clicking a nav link
+navlinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("active");
+    menuIcon.classList.remove("bx-x");
+  });
+});
