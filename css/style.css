@@ -11,11 +11,12 @@
 }
 
 :root {
-  --bg-color: #0c1016;
+  --bg-color: #0E0E0E;
   --second-bg-color: #323946;
   --white-color: #fff;
   --main-color: #0ef;
   --disabled-color: #414040;
+  --ptbg-color: #0E0E0E;
 }
 
 html {
@@ -222,7 +223,7 @@ section.active {
   position: relative;
   width: 100%;
   height: 100%;
-  background: var(--bg-color);
+  background: var(--ptbg-color);
   border-radius: 50%;
   border: 0.01rem solid var(--bg-color);
   display: flex;
