@@ -5,6 +5,7 @@ import "./Projects.css";
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [visibleCount, setVisibleCount] = useState(6);
 
   const projects = [
     {
@@ -15,7 +16,8 @@ const Projects = () => {
       image: "/image/1.jpg",
       technologies: ["PHP", "Laravel", "MySQL", "JavaScript", "HTML/CSS"],
       category: "fullstack",
-      github: "https://github.com/Ravindu-lasal/Hotel-Booking-and-Management-System",
+      github:
+        "https://github.com/Ravindu-lasal/Hotel-Booking-and-Management-System",
       live: "#",
       featured: true,
     },
@@ -70,7 +72,8 @@ const Projects = () => {
     {
       id: 6,
       title: "Campus Management System",
-      description: "A desktop application built with C# for managing student and teacher details efficiently, providing easy CRUD operations.",
+      description:
+        "A desktop application built with C# for managing student and teacher details efficiently, providing easy CRUD operations.",
       image: "/image/5.jpg",
       technologies: ["C#", "MySQL", ".NET"],
       category: "fullstack",
@@ -87,10 +90,21 @@ const Projects = () => {
     { key: "fullstack", label: "Full Stack" },
   ];
 
-  const filteredProjects =
+  const allFiltered =
     activeFilter === "all"
       ? projects
       : projects.filter((project) => project.category === activeFilter);
+
+  const filteredProjects = allFiltered.slice(0, visibleCount);
+
+  const handleFilterChange = (key) => {
+    setActiveFilter(key);
+    setVisibleCount(6);
+  };
+
+  const handleShowMore = () => {
+    setVisibleCount((prev) => prev + 6);
+  };
 
   return (
     <section id="projects" className="projects">
@@ -110,7 +124,8 @@ const Projects = () => {
             Featured <span className="text-gradient">Projects</span>
           </h2>
           <p className="section-subtitle">
-            A selection of my recent work spanning frontend interfaces to complex full-stack systems.
+            A selection of my recent work spanning frontend interfaces to
+            complex full-stack systems.
           </p>
         </motion.div>
 
@@ -126,9 +141,10 @@ const Projects = () => {
             {filters.map((filter) => (
               <button
                 key={filter.key}
-                className={`filter-btn ${activeFilter === filter.key ? "active" : ""
-                  }`}
-                onClick={() => setActiveFilter(filter.key)}
+                className={`filter-btn ${
+                  activeFilter === filter.key ? "active" : ""
+                }`}
+                onClick={() => handleFilterChange(filter.key)}
               >
                 {activeFilter === filter.key && (
                   <motion.div
@@ -154,11 +170,7 @@ const Projects = () => {
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
                 className={`project-card glass-panel ${project.featured ? "featured" : ""}`}
-                whileHover={{ y: -10 }}
               >
-                {project.featured && (
-                  <div className="featured-badge text-gradient">Featured</div>
-                )}
 
                 <div className="project-image">
                   <img src={project.image} alt={project.title} />
@@ -170,7 +182,8 @@ const Projects = () => {
                         href={project.github}
                         className="project-link glass-panel"
                         aria-label="View source code"
-                        target="_blank" rel="noreferrer"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <Github size={22} />
                       </motion.a>
@@ -180,7 +193,8 @@ const Projects = () => {
                         href={project.live}
                         className="project-link glass-panel"
                         aria-label="View live demo"
-                        target="_blank" rel="noreferrer"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <ExternalLink size={22} />
                       </motion.a>
@@ -205,13 +219,35 @@ const Projects = () => {
           </AnimatePresence>
         </motion.div>
 
-        {filteredProjects.length === 0 && (
+        {allFiltered.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="no-projects glass-panel"
           >
-            <p>No projects found for the selected category. Please try another filter.</p>
+            <p>
+              No projects found for the selected category. Please try another
+              filter.
+            </p>
+          </motion.div>
+        )}
+
+        {visibleCount < allFiltered.length && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="show-more-wrapper"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="show-more-btn glass-panel"
+              onClick={handleShowMore}
+            >
+              <Sparkles size={18} />
+              Show More
+            </motion.button>
           </motion.div>
         )}
       </div>

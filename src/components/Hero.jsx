@@ -116,7 +116,7 @@ const Hero = () => {
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              <span className="text-gradient font-bold">5+</span>
+              <span className="text-gradient font-bold">14+</span>
               <span>Projects Completed</span>
             </motion.div>
 
