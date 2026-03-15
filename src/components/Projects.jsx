@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { ExternalLink, Github, Filter } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, Github, Filter, Sparkles } from "lucide-react";
 import "./Projects.css";
 
 const Projects = () => {
@@ -9,11 +9,11 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "Hotel-Management-System",
+      title: "Hotel Booking System",
       description:
         "A Laravel-based hotel booking web app, admin management, responsive design, and features for browsing rooms, making reservations, and managing bookings.",
       image: "/image/1.jpg",
-      technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL", "Laravel"],
+      technologies: ["PHP", "Laravel", "MySQL", "JavaScript", "HTML/CSS"],
       category: "fullstack",
       github: "https://github.com/Ravindu-lasal/Hotel-Booking-and-Management-System",
       live: "#",
@@ -21,11 +21,11 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: "Beauty-Salon-Booikng",
+      title: "Beauty Salon Booking",
       description:
-        "An online beauty salon booking system for easy appointment, staff and service management with a simple, user-friendly interface",
+        "An online beauty salon booking system for easy appointment, staff and service management with a simple, user-friendly interface.",
       image: "/image/2.jpg",
-      technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
+      technologies: ["PHP", "MySQL", "JavaScript", "HTML/CSS"],
       category: "fullstack",
       github: "https://github.com/Ravindu-lasal/Beauty-Salon-Booikng",
       live: "#",
@@ -33,11 +33,11 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: "15+ javascript Projects",
+      title: "15+ JavaScript Projects",
       description:
-        "I build is a collection of 15+ small JavaScript projects that demonstrate various web development skills and techniques.",
+        "A collection of 15+ small JavaScript projects that demonstrate various core web development skills and DOM manipulation techniques.",
       image: "/image/3.jpg",
-      technologies: ["HTML5", "CSS3", "JavaScript"],
+      technologies: ["JavaScript", "HTML5", "CSS3"],
       category: "frontend",
       github: "https://github.com/Ravindu-lasal/20-projects-JavaScript",
       live: "https://ravindu-lasal.github.io/20-projects-JavaScript/",
@@ -45,11 +45,11 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: "bus timetable booking system",
+      title: "Bus Timetable System",
       description:
         "A web-based bus booking system for viewing schedules, searching routes, and reserving seats online with easy booking management.",
       image: "/image/6.jpg",
-      technologies: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
+      technologies: ["PHP", "MySQL", "JavaScript", "HTML/CSS"],
       category: "fullstack",
       github: "#",
       live: "#",
@@ -59,24 +59,24 @@ const Projects = () => {
       id: 5,
       title: "Portfolio Website",
       description:
-        "A responsive portfolio website with modern design, smooth animations, and contact form integration.",
+        "A responsive portfolio website featuring a modern premium design, smooth Framer Motion animations, and a sleek glassmorphism UI.",
       image: "/image/7.png",
-      technologies: ["React", "Vite"],
+      technologies: ["React", "Vite", "Framer Motion", "CSS"],
       category: "frontend",
       github: "#",
       live: "http://ravindulasal.me/",
-      featured: false,
+      featured: true,
     },
     {
       id: 6,
-      title: "Campus management System",
-      description:"A simple C# app for managing student and teacher details in a campus, making it easy to store and update information.",
+      title: "Campus Management System",
+      description: "A desktop application built with C# for managing student and teacher details efficiently, providing easy CRUD operations.",
       image: "/image/5.jpg",
-      technologies: ["C#", " MySQL"],
+      technologies: ["C#", "MySQL", ".NET"],
       category: "fullstack",
       github: "https://github.com/Ravindu-lasal/Campus-Management-System",
       live: "#",
-      featured: true,
+      featured: false,
     },
   ];
 
@@ -99,14 +99,18 @@ const Projects = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           className="projects-header"
         >
+          <div className="section-badge glass-panel">
+            <Sparkles size={16} className="text-gradient" />
+            <span>Portfolio</span>
+          </div>
           <h2 className="section-title">
-            My <span className="text-gradient">Projects</span>
+            Featured <span className="text-gradient">Projects</span>
           </h2>
           <p className="section-subtitle">
-            Here are some of the projects I've worked on recently
+            A selection of my recent work spanning frontend interfaces to complex full-stack systems.
           </p>
         </motion.div>
 
@@ -115,79 +119,99 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="project-filters"
+          className="project-filters glass-panel"
         >
-          <Filter size={20} />
-          {filters.map((filter) => (
-            <button
-              key={filter.key}
-              className={`filter-btn ${
-                activeFilter === filter.key ? "active" : ""
-              }`}
-              onClick={() => setActiveFilter(filter.key)}
-            >
-              {filter.label}
-            </button>
-          ))}
+          <Filter size={18} className="filter-icon" />
+          <div className="filter-btn-group">
+            {filters.map((filter) => (
+              <button
+                key={filter.key}
+                className={`filter-btn ${activeFilter === filter.key ? "active" : ""
+                  }`}
+                onClick={() => setActiveFilter(filter.key)}
+              >
+                {activeFilter === filter.key && (
+                  <motion.div
+                    layoutId="activeFilterBg"
+                    className="active-filter-bg"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className="filter-label">{filter.label}</span>
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         <motion.div layout className="projects-grid">
-          {filteredProjects.map((project) => (
-            <motion.div
-              key={project.id}
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.5 }}
-              className={`project-card ${project.featured ? "featured" : ""}`}
-              whileHover={{ y: -10 }}
-            >
-              <div className="project-image">
-                <img src={project.image} alt={project.title} />
-                <div className="project-overlay">
-                  <div className="project-links">
-                    <a
-                      href={project.github}
-                      className="project-link"
-                      aria-label="View source code"
-                    >
-                      <Github size={20} />
-                    </a>
-                    <a
-                      href={project.live}
-                      className="project-link"
-                      aria-label="View live demo"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
+                className={`project-card glass-panel ${project.featured ? "featured" : ""}`}
+                whileHover={{ y: -10 }}
+              >
+                {project.featured && (
+                  <div className="featured-badge text-gradient">Featured</div>
+                )}
+
+                <div className="project-image">
+                  <img src={project.image} alt={project.title} />
+                  <div className="project-overlay">
+                    <div className="project-links">
+                      <motion.a
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        href={project.github}
+                        className="project-link glass-panel"
+                        aria-label="View source code"
+                        target="_blank" rel="noreferrer"
+                      >
+                        <Github size={22} />
+                      </motion.a>
+                      <motion.a
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        href={project.live}
+                        className="project-link glass-panel"
+                        aria-label="View live demo"
+                        target="_blank" rel="noreferrer"
+                      >
+                        <ExternalLink size={22} />
+                      </motion.a>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
+                <div className="project-content">
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-description">{project.description}</p>
 
-                <div className="project-technologies">
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className="tech-tag">
-                      {tech}
-                    </span>
-                  ))}
+                  <div className="project-technologies">
+                    {project.technologies.map((tech, index) => (
+                      <span key={index} className="tech-tag glass-panel">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
 
         {filteredProjects.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="no-projects"
+            className="no-projects glass-panel"
           >
-            <p>No projects found for the selected filter.</p>
+            <p>No projects found for the selected category. Please try another filter.</p>
           </motion.div>
         )}
       </div>

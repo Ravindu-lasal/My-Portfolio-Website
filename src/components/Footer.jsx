@@ -44,21 +44,24 @@ const Footer = () => {
 
   return (
     <footer className="footer">
+      {/* Decorative gradient line at top of footer */}
+      <div className="footer-top-gradient"></div>
+
       <div className="container">
         <div className="footer-content">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="footer-main"
           >
             <div className="footer-brand">
               <h3 className="footer-logo">
-                <span className="text-gradient">Portfolio</span>
+                Ravindu<span className="text-gradient">.Dev</span>
               </h3>
               <p className="footer-tagline">
-                Building the future, one line of code at a time.
+                Turning ideas into high-quality, modern digital solutions.
               </p>
             </div>
 
@@ -97,20 +100,20 @@ const Footer = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-link"
+                    className="social-link glass-panel"
                     aria-label={social.label}
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
                   >
                     {social.icon}
                   </motion.a>
                 ))}
               </div>
               <p className="footer-email">
-                <a href="mailto:hello@example.com">hello@example.com</a>
+                <a href="mailto:ravindulasal@gmail.com">ravindulasal@gmail.com</a>
               </p>
             </div>
           </motion.div>
@@ -125,32 +128,29 @@ const Footer = () => {
             <div className="footer-divider"></div>
             <div className="footer-copyright">
               <p>
-                © {currentYear} Ravinsu Lasal. Made with{" "}
-                <motion.span
-                  className="heart"
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                >
-                  <Heart size={16} fill="currentColor" />
-                </motion.span>{" "}
-                using React & Vite
+                © {currentYear} Ravindu Lasal.
               </p>
               <p className="footer-note">
-                Designed and developed with passion for creating amazing user
-                experiences.
+                Designed & Built with <motion.span
+                  className="heart"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <Heart size={14} fill="currentColor" />
+                </motion.span> using React
               </p>
             </div>
           </motion.div>
         </div>
 
         <motion.button
-          className="back-to-top"
+          className="back-to-top glass-panel hover-glow"
           onClick={scrollToTop}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           viewport={{ once: true }}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.1, y: -5 }}
           whileTap={{ scale: 0.9 }}
           aria-label="Back to top"
         >

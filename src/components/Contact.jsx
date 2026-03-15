@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Mail,
-  Phone,
   MapPin,
   Send,
   Github,
   Linkedin,
-  Twitter,
+  PhoneCall,
+  Sparkles
 } from "lucide-react";
 import "./Contact.css";
 
@@ -41,37 +41,36 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: <Mail size={24} />,
+      icon: <Mail size={22} />,
       title: "Email",
       value: "ravindulasal@gmail.com",
       href: "mailto:ravindulasal@gmail.com",
     },
     {
-      icon: <Phone size={24} />,
+      icon: <PhoneCall size={22} />,
       title: "Phone",
-      value: "#",
+      value: "Available upon request",
       href: "#",
     },
     {
-      icon: <MapPin size={24} />,
+      icon: <MapPin size={22} />,
       title: "Location",
-      value: "Kegalle",
+      value: "Kegalle, Sri Lanka",
       href: "#",
     },
   ];
 
   const socialLinks = [
     {
-      icon: <Github size={24} />,
+      icon: <Github size={22} />,
       name: "GitHub",
       href: "https://github.com/Ravindu-lasal",
     },
     {
-      icon: <Linkedin size={24} />,
+      icon: <Linkedin size={22} />,
       name: "LinkedIn",
       href: "https://linkedin.com/in/Ravindu-lasal",
     },
-   
   ];
 
   return (
@@ -81,9 +80,13 @@ const Contact = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           className="contact-header"
         >
+          <div className="section-badge glass-panel">
+            <Sparkles size={16} className="text-gradient" />
+            <span>Connect</span>
+          </div>
           <h2 className="section-title">
             Get In <span className="text-gradient">Touch</span>
           </h2>
@@ -97,15 +100,15 @@ const Contact = () => {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="contact-info"
           >
             <div className="contact-text">
               <h3>Let's work together</h3>
               <p>
-                I'm always interested in new opportunities and exciting
-                projects. Whether you have a question or just want to say hi,
-                I'll try my best to get back to you!
+                I'm always interested in new opportunities, collaborations, and exciting
+                projects. Whether you have a specific question or just want to say hi,
+                I'd love to hear from you!
               </p>
             </div>
 
@@ -114,12 +117,12 @@ const Contact = () => {
                 <motion.a
                   key={index}
                   href={info.href}
-                  className="contact-item"
+                  className="contact-item glass-panel hover-glow"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 * index }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ x: 5 }}
                 >
                   <div className="contact-icon">{info.icon}</div>
                   <div className="contact-item-content">
@@ -130,8 +133,8 @@ const Contact = () => {
               ))}
             </div>
 
-            <div className="social-links">
-              <h4>Follow me on</h4>
+            <div className="social-links-container">
+              <h4>Follow me online</h4>
               <div className="social-icons">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -139,13 +142,13 @@ const Contact = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-link"
+                    className="social-link glass-panel"
                     aria-label={social.name}
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.1 * index }}
                     viewport={{ once: true }}
-                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
                   >
                     {social.icon}
                   </motion.a>
@@ -158,34 +161,38 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="contact-form-container"
+            viewport={{ once: true, margin: "-100px" }}
+            className="contact-form-container glass-panel"
           >
             <form className="contact-form" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Full Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="Your full name"
-                />
-              </div>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="name">Full Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="John Doe"
+                    className="glass-input"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="your.email@example.com"
-                />
+                <div className="form-group">
+                  <label htmlFor="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="john@example.com"
+                    className="glass-input"
+                  />
+                </div>
               </div>
 
               <div className="form-group">
@@ -197,7 +204,8 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  placeholder="What's this about?"
+                  placeholder="Project Inquiry"
+                  className="glass-input"
                 />
               </div>
 
@@ -206,23 +214,25 @@ const Contact = () => {
                 <textarea
                   id="message"
                   name="message"
-                  rows="3"
+                  rows="5"
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  placeholder="Tell me about your project..."
+                  placeholder="Tell me about your project requirements..."
+                  className="glass-input"
                 ></textarea>
               </div>
 
               <motion.button
                 type="submit"
-                className={`submit-btn ${isSubmitting ? "submitting" : ""}`}
+                className={`btn-primary ${isSubmitting ? "submitting" : ""}`}
                 disabled={isSubmitting}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                style={{ width: '100%', justifyContent: 'center', marginTop: '1rem' }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <Send size={20} />
                 <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
+                <Send size={18} />
               </motion.button>
             </form>
           </motion.div>
