@@ -60,7 +60,9 @@ const Hero = () => {
               transition={{ delay: 0.8, duration: 0.8 }}
               className="hero-description"
             >
-              Passionate engineer crafting dynamic digital experiences. Focused on building scalable, user-friendly solutions from frontend aesthetics to robust backend architectures.
+              Passionate engineer crafting dynamic digital experiences. Focused
+              on building scalable, user-friendly solutions from frontend
+              aesthetics to robust backend architectures.
             </motion.p>
 
             <motion.div
@@ -84,13 +86,23 @@ const Hero = () => {
               transition={{ delay: 1.2, duration: 0.8 }}
               className="hero-social"
             >
-              <a href="https://github.com/Ravindu-lasal" className="social-link" aria-label="GitHub" target="_blank" rel="noreferrer">
+              <a
+                href="https://github.com/Ravindu-lasal"
+                className="social-link"
+                aria-label="GitHub"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Github size={22} />
               </a>
               <a href="#" className="social-link" aria-label="LinkedIn">
                 <Linkedin size={22} />
               </a>
-              <a href="mailto:contact@ravindulasal.me" className="social-link" aria-label="Email">
+              <a
+                href="mailto:contact@ravindulasal.me"
+                className="social-link"
+                aria-label="Email"
+              >
                 <Mail size={22} />
               </a>
             </motion.div>
@@ -99,13 +111,18 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ delay: 0.5, duration: 1, type: "spring", bounce: 0.4 }}
+            transition={{
+              delay: 0.5,
+              duration: 1,
+              type: "spring",
+              bounce: 0.4,
+            }}
             className="hero-image-wrapper"
           >
             <div className="image-glow"></div>
             <div className="image-container glass-panel">
               <img
-                src="/myimg1.jpg"
+                src={import.meta.env.BASE_URL + "myimg1.jpg"}
                 alt="Ravindu Lasal"
                 className="profile-image"
               />
@@ -123,7 +140,12 @@ const Hero = () => {
             <motion.div
               className="floating-badge badge-2 glass-panel"
               animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1,
+              }}
             >
               <span>Full Stack</span>
               <span className="text-gradient font-bold">Development</span>

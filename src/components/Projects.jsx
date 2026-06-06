@@ -171,9 +171,14 @@ const Projects = () => {
                 transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
                 className={`project-card glass-panel ${project.featured ? "featured" : ""}`}
               >
-
                 <div className="project-image">
-                  <img src={project.image} alt={project.title} />
+                  <img
+                    src={
+                      import.meta.env.BASE_URL +
+                      project.image.replace(/^\//, "")
+                    }
+                    alt={project.title}
+                  />
                   <div className="project-overlay">
                     <div className="project-links">
                       <motion.a
